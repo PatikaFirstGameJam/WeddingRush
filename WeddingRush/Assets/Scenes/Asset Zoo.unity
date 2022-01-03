@@ -642,8 +642,6 @@ MonoBehaviour:
   boyRightLimit: {fileID: 1874765873}
   girlLeftLimit: {fileID: 1255328775}
   girlRightLimit: {fileID: 1838418350}
-  speed: 10
-  sideMovementSensitivity: 0.01
 --- !u!4 &842437640
 Transform:
   m_ObjectHideFlags: 0
@@ -903,7 +901,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1556916011}
-  - component: {fileID: 1556916012}
   m_Layer: 0
   m_Name: GirlSideMovement
   m_TagString: Untagged
@@ -926,26 +923,6 @@ Transform:
   m_Father: {fileID: 1189638490}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1556916012
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1556916010}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2b3d8457d0d1d4244b537160a9b81f3b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  boyObject: {fileID: 1189638488}
-  boySideMovementRoot: {fileID: 1556916011}
-  boyLeftLimit: {fileID: 1255328775}
-  boyRightLimit: {fileID: 1838418350}
-  speed: 10
-  sideMovementSensitivity: 0.01
-  inputDrag: {x: 0, y: 0}
-  previousMousePosition: {x: 0, y: 0}
 --- !u!1 &1559499759
 GameObject:
   m_ObjectHideFlags: 0

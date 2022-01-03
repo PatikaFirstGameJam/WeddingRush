@@ -658,6 +658,50 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &916926073
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 916926075}
+  - component: {fileID: 916926074}
+  m_Layer: 0
+  m_Name: SettingsManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &916926074
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 916926073}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 981ce524e29fe6f4fb7859ae4c45cc91, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  settings: {fileID: 11400000, guid: 77ae073b8d878e8489bbf2d451e4622f, type: 2}
+--- !u!4 &916926075
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 916926073}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 7
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &941199837
 GameObject:
   m_ObjectHideFlags: 0
@@ -796,7 +840,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1189638490}
-  - component: {fileID: 1189638489}
   m_Layer: 0
   m_Name: GirlRoot
   m_TagString: Untagged
@@ -804,26 +847,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &1189638489
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1189638488}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4110d5f948ea3444182eb6f18ce93e8b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  girlObject: {fileID: 1189638488}
-  girlSideMovementRoot: {fileID: 1556916011}
-  girlLeftLimit: {fileID: 1255328775}
-  girlRightLimit: {fileID: 1838418350}
-  speed: 10
-  sideMovementSensitivity: 0.01
-  inputDrag: {x: 0, y: 0}
-  previousMousePosition: {x: 0, y: 0}
 --- !u!4 &1189638490
 Transform:
   m_ObjectHideFlags: 0
@@ -932,7 +955,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1559499760}
-  - component: {fileID: 1559499761}
   m_Layer: 0
   m_Name: BoyRoot
   m_TagString: Untagged
@@ -957,26 +979,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1559499761
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1559499759}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2b3d8457d0d1d4244b537160a9b81f3b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  boyObject: {fileID: 1559499759}
-  boySideMovementRoot: {fileID: 1153301421}
-  boyLeftLimit: {fileID: 394043149}
-  boyRightLimit: {fileID: 1874765873}
-  speed: 10
-  sideMovementSensitivity: 0.01
-  inputDrag: {x: 0, y: 0}
-  previousMousePosition: {x: 0, y: 0}
 --- !u!1 &1698326701
 GameObject:
   m_ObjectHideFlags: 0

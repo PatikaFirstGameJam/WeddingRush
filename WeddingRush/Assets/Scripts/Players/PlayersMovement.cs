@@ -16,8 +16,10 @@ public class PlayersMovement : MonoBehaviour
     [SerializeField] private Transform girlLeftLimit;
     [SerializeField] private Transform girlRightLimit;
 
-    [SerializeField] private float speed = 10f;
-    [SerializeField] private float sideMovementSensitivity = 0.01f;
+    [SerializeField] private float speed => SettingsManager.GameSettings.playersSpeed;
+
+    [SerializeField]
+    private float sideMovementSensitivity => SettingsManager.GameSettings.playersSideMovementSensitivity;
 
 
     private Vector2 inputDrag;

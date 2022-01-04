@@ -9,7 +9,6 @@ public class GameManager : MonoSingleton<GameManager>
 
     public void IncreaseMoney()
     {
-        //for now when girl and boy attached with objectives our money increase 400, we can fix later. or we can design our levels with this information. :D 
         money += 200;
     }
 

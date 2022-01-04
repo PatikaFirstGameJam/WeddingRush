@@ -14,9 +14,7 @@ public class PlayersMovement : MonoBehaviour
     [SerializeField] private Transform girlLeftLimit;
     [SerializeField] private Transform girlRightLimit;
 
-    [SerializeField] private float speed => SettingsManager.GameSettings.playersSpeed;
-
-    [SerializeField]
+    private float speed => SettingsManager.GameSettings.playersSpeed;
     private float sideMovementSensitivity => SettingsManager.GameSettings.playersSideMovementSensitivity;
 
 

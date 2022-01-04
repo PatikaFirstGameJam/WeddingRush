@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class BoyPlayer : MonoSingleton<BoyPlayer>
+public class BoyPlayer : MonoBehaviour
 {
     private void OnTriggerEnter(Collider col)
     {

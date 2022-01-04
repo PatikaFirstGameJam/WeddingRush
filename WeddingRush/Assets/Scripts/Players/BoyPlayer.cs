@@ -1,4 +1,3 @@
-
 using UnityEngine;
 
 public class BoyPlayer : MonoBehaviour
@@ -15,6 +14,14 @@ public class BoyPlayer : MonoBehaviour
         {
             //will change with observer
             FindObjectOfType<GameManager>().DecreaseRingAmount();
+        }
+        else if (col.gameObject.CompareTag("PreGate"))
+        {
+            GameManager.GirlEnableFalse();
+        }
+        else if (col.gameObject.CompareTag("PostGate"))
+        {
+            GameManager.GirlEnableTrue();
         }
     }
 }

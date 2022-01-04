@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class PlayersMovement : MonoBehaviour
@@ -31,6 +29,7 @@ public class PlayersMovement : MonoBehaviour
 
     private float girlLeftLimitX => girlLeftLimit.localPosition.x;
     private float girlRightLimitX => girlRightLimit.localPosition.x;
+
     void Update()
     {
         ForwardMovement();
@@ -43,7 +42,7 @@ public class PlayersMovement : MonoBehaviour
         BoyForwardMovement();
         GirlForwardMovement();
     }
-    
+
     private void BoyForwardMovement()
     {
         boyObject.transform.Translate(Vector3.forward * speed * Time.deltaTime);
@@ -82,9 +81,10 @@ public class PlayersMovement : MonoBehaviour
         {
             previousMousePosition = Input.mousePosition;
         }
+
         if (Input.GetMouseButton(0))
         {
-            var deltaMouse = (Vector2)Input.mousePosition - previousMousePosition;
+            var deltaMouse = (Vector2) Input.mousePosition - previousMousePosition;
             inputDrag = deltaMouse;
             previousMousePosition = Input.mousePosition;
         }

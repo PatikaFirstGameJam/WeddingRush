@@ -6,6 +6,10 @@ TagManager:
   tags:
   - Objective
   - RingGate
+  - GirlPlayer
+  - BoyPlayer
+  - PreGate
+  - PostGate
   layers:
   - Default
   - TransparentFX

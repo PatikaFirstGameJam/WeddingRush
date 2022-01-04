@@ -10,5 +10,13 @@ public class GirlPlayer : MonoBehaviour
             FindObjectOfType<GameManager>().IncreaseMoney();
             Destroy(col.gameObject);
         }
+        else if (col.gameObject.CompareTag("PreGate"))
+        {
+            this.gameObject.SetActive(false);
+        }
+        else if (col.gameObject.CompareTag("PostGate"))
+        {
+            this.gameObject.SetActive(true);
+        }
     }
 }

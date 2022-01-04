@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 
 public class GirlPlayer : MonoBehaviour
@@ -6,17 +7,8 @@ public class GirlPlayer : MonoBehaviour
     {
         if (col.gameObject.CompareTag("Objective"))
         {
-            //will change with observer
-            FindObjectOfType<GameManager>().IncreaseMoney();
+            GameManager.Instance.IncreaseMoney();
             Destroy(col.gameObject);
-        }
-        else if (col.gameObject.CompareTag("PreGate"))
-        {
-            this.gameObject.SetActive(false);
-        }
-        else if (col.gameObject.CompareTag("PostGate"))
-        {
-            this.gameObject.SetActive(true);
         }
     }
 }

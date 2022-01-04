@@ -1,11 +1,11 @@
 using System;
 using UnityEngine;
 
-public class GameManager : MonoBehaviour
+public class GameManager : MonoSingleton<GameManager>
 {
     [SerializeField] private int money = 0;
     [SerializeField] private GameObject girlPlayer;
-    [SerializeField] private static bool isGirlEnable = true;
+    [SerializeField] private bool isGirlEnable = true;
 
     public void IncreaseMoney()
     {
@@ -42,12 +42,12 @@ public class GameManager : MonoBehaviour
         }
     }
 
-    public static void GirlEnableTrue()
+    public void GirlEnableTrue()
     {
         isGirlEnable = true;
     }
 
-    public static void GirlEnableFalse()
+    public void GirlEnableFalse()
     {
         isGirlEnable = false;
     }

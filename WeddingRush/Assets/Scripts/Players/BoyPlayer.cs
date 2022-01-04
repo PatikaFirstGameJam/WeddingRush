@@ -1,27 +1,25 @@
 using UnityEngine;
 
-public class BoyPlayer : MonoBehaviour
+public class BoyPlayer : MonoSingleton<BoyPlayer>
 {
     private void OnTriggerEnter(Collider col)
     {
         if (col.gameObject.CompareTag("Objective"))
         {
-            //will change with observer
-            FindObjectOfType<GameManager>().IncreaseMoney();
+            GameManager.Instance.IncreaseMoney();
             Destroy(col.gameObject);
         }
         else if (col.gameObject.CompareTag("RingGate"))
         {
-            //will change with observer
-            FindObjectOfType<GameManager>().DecreaseRingAmount();
+            GameManager.Instance.DecreaseRingAmount();
         }
         else if (col.gameObject.CompareTag("PreGate"))
         {
-            GameManager.GirlEnableFalse();
+            GameManager.Instance.GirlEnableFalse();
         }
         else if (col.gameObject.CompareTag("PostGate"))
         {
-            GameManager.GirlEnableTrue();
+            GameManager.Instance.GirlEnableTrue();
         }
     }
 }

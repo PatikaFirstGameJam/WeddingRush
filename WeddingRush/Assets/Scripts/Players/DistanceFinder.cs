@@ -30,6 +30,6 @@ public class DistanceFinder : MonoBehaviour
 
     private void DistanceController()
     {
-            closeDistance?.Invoke(distanceX);
+        closeDistance?.Invoke(distanceX);
     }
 }

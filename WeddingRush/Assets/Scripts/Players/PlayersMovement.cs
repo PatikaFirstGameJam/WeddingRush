@@ -122,22 +122,29 @@ public class PlayersMovement : MonoBehaviour
         var forLeftComeIncrease = boyLocal.z + difference;
         var forRightComeIncrease = boyLocal.z - difference;
 
-        if (girlLocal.z < forGirlZ && girlLocal.z < forLeftComeIncrease) // if she is at left side and wants to go right first come
+        if (girlLocal.z < forGirlZ &&
+            girlLocal.z < forLeftComeIncrease) // if she is at left side and wants to go right first come
         {
             girlLocal.z += 2f * Time.deltaTime;
         }
-        else if (girlLocal.z > forGirlZ && girlLocal.z < forRightComeIncrease) // if she is at right side and wants to go left first come
+        else if (girlLocal.z > forGirlZ &&
+                 girlLocal.z < forRightComeIncrease) // if she is at right side and wants to go left first come
         {
             girlLocal.z += 2f * Time.deltaTime;
         }
-        else if (girlLocal.z >= boyLocal.z && forGirlZ >= distanceX) //forLeftDecrease if she is goin right to left but she is at ways center
+        else if
+            (girlLocal.z >= boyLocal.z &&
+             forGirlZ >= distanceX) //forLeftDecrease if she is goin right to left but she is at ways center
         {
             girlLocal.z -= 2f * Time.deltaTime;
         }
-        else if (girlLocal.z >= boyLocal.z && forGirlZ <= distanceX) //forRightDecrease if she is goin left to right but she is at ways center
+        else if
+            (girlLocal.z >= boyLocal.z &&
+             forGirlZ <= distanceX) //forRightDecrease if she is goin left to right but she is at ways center
         {
             girlLocal.z -= 2f * Time.deltaTime;
         }
+
         girlSideMovementRoot.localPosition = girlLocal;
     }
 }

@@ -61,4 +61,9 @@ public class GameManager : MonoSingleton<GameManager>
     {
         isGirlEnable = false;
     }
+
+    public float GetLoveValue()
+    {
+        return love;
+    }
 }

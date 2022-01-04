@@ -1663,6 +1663,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   money: 0
+  love: 50
   girlPlayer: {fileID: 1189638488}
   isGirlEnable: 1
 --- !u!4 &1431537954

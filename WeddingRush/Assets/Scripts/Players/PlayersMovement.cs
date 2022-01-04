@@ -1,9 +1,10 @@
+using System;
 using UnityEngine;
 
 public class PlayersMovement : MonoBehaviour
 {
-    [SerializeField] private GameObject girlObject;
-    [SerializeField] private GameObject boyObject;
+    [SerializeField] private GameObject girlPlayer;
+    [SerializeField] private GameObject boyPlayer;
 
     [SerializeField] private Transform boySideMovementRoot;
     [SerializeField] private Transform girlSideMovementRoot;
@@ -28,6 +29,12 @@ public class PlayersMovement : MonoBehaviour
     private float girlLeftLimitX => girlLeftLimit.localPosition.x;
     private float girlRightLimitX => girlRightLimit.localPosition.x;
 
+    private void Awake()
+    {
+        DistanceFinder.closeDistance += IncreaseGirlZPosition;
+        DistanceFinder.longDistance += DecreaseGirlZPosition;
+    }
+
     void Update()
     {
         ForwardMovement();
@@ -43,12 +50,12 @@ public class PlayersMovement : MonoBehaviour
 
     private void BoyForwardMovement()
     {
-        boyObject.transform.Translate(Vector3.forward * speed * Time.deltaTime);
+        boyPlayer.transform.Translate(Vector3.forward * speed * Time.deltaTime);
     }
 
     private void GirlForwardMovement()
     {
-        girlObject.transform.Translate(Vector3.forward * speed * Time.deltaTime);
+        girlPlayer.transform.Translate(Vector3.forward * speed * Time.deltaTime);
     }
 
     private void SideMovement()
@@ -90,5 +97,31 @@ public class PlayersMovement : MonoBehaviour
         {
             inputDrag = Vector2.zero;
         }
+    }
+
+    private void IncreaseGirlZPosition()
+    {
+        var girlLocal = girlSideMovementRoot.localPosition;
+        var boyLocal = boySideMovementRoot.localPosition;
+        transform.eulerAngles = new Vector3(1.5f, 0f, girlLocal.z);
+        if (girlLocal.z < boyLocal.z + 1.14f)
+        {
+            girlLocal.z += 2f * Time.deltaTime;
+        }
+
+        girlSideMovementRoot.localPosition = girlLocal;
+    }
+
+    private void DecreaseGirlZPosition()
+    {
+        var girlLocal = girlSideMovementRoot.localPosition;
+        var boyLocal = boySideMovementRoot.localPosition;
+        transform.eulerAngles = new Vector3(girlLocal.x, 0f, girlLocal.z);
+        if (girlLocal.z > boyLocal.z)
+        {
+            girlLocal.z -= 3f * Time.deltaTime;
+        }
+
+        girlSideMovementRoot.localPosition = girlLocal;
     }
 }

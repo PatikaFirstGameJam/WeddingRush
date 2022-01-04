@@ -287,6 +287,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   boyPlayer: {fileID: 1153301421}
   girlPlayer: {fileID: 1556916011}
+  boyPosition: {x: 0, y: 0, z: 0}
+  girlPosition: {x: 0, y: 0, z: 0}
   distanceX: 0
 --- !u!4 &174571507
 Transform:
@@ -1127,8 +1129,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cfb9ecf0d37686a47bf415ebe07d9908, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  girlObject: {fileID: 1189638488}
-  boyObject: {fileID: 1559499759}
+  girlPlayer: {fileID: 1189638488}
+  boyPlayer: {fileID: 1559499759}
   boySideMovementRoot: {fileID: 1153301421}
   girlSideMovementRoot: {fileID: 1556916011}
   boyLeftLimit: {fileID: 394043149}
@@ -1142,8 +1144,8 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 842437638}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -9.276263, y: -17.36623, z: -96.95965}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 850953867}
@@ -1673,8 +1675,8 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1431537952}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -9.276263, y: -17.36623, z: -96.95965}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 251567503}

@@ -29,10 +29,16 @@ public class PlayersMovement : MonoBehaviour
     private float girlLeftLimitX => girlLeftLimit.localPosition.x;
     private float girlRightLimitX => girlRightLimit.localPosition.x;
 
+    private float forGirlZ;
+
     private void Awake()
     {
-        DistanceFinder.closeDistance += IncreaseGirlZPosition;
-        DistanceFinder.longDistance += DecreaseGirlZPosition;
+        DistanceFinder.closeDistance += ChangeGirlZPosition;
+    }
+
+    private void OnDestroy()
+    {
+        DistanceFinder.closeDistance -= ChangeGirlZPosition;
     }
 
     void Update()
@@ -99,29 +105,39 @@ public class PlayersMovement : MonoBehaviour
         }
     }
 
-    private void IncreaseGirlZPosition()
+    private void ChangeGirlZPosition(float distanceX)
     {
+        if (distanceX <= 0)
+        {
+            forGirlZ = -1.14f;
+        }
+        else
+        {
+            forGirlZ = 1.14f;
+        }
+
+        var difference = forGirlZ - distanceX;
         var girlLocal = girlSideMovementRoot.localPosition;
         var boyLocal = boySideMovementRoot.localPosition;
-        transform.eulerAngles = new Vector3(1.5f, 0f, girlLocal.z);
-        if (girlLocal.z < boyLocal.z + 1.14f)
+        var forLeftComeIncrease = boyLocal.z + difference;
+        var forRightComeIncrease = boyLocal.z - difference;
+
+        if (girlLocal.z < forGirlZ && girlLocal.z < forLeftComeIncrease) // if she is at left side and wants to go right first come
         {
             girlLocal.z += 2f * Time.deltaTime;
         }
-
-        girlSideMovementRoot.localPosition = girlLocal;
-    }
-
-    private void DecreaseGirlZPosition()
-    {
-        var girlLocal = girlSideMovementRoot.localPosition;
-        var boyLocal = boySideMovementRoot.localPosition;
-        transform.eulerAngles = new Vector3(girlLocal.x, 0f, girlLocal.z);
-        if (girlLocal.z > boyLocal.z)
+        else if (girlLocal.z > forGirlZ && girlLocal.z < forRightComeIncrease) // if she is at right side and wants to go left first come
         {
-            girlLocal.z -= 3f * Time.deltaTime;
+            girlLocal.z += 2f * Time.deltaTime;
         }
-
+        else if (girlLocal.z >= boyLocal.z && forGirlZ >= distanceX) //forLeftDecrease if she is goin right to left but she is at ways center
+        {
+            girlLocal.z -= 2f * Time.deltaTime;
+        }
+        else if (girlLocal.z >= boyLocal.z && forGirlZ <= distanceX) //forRightDecrease if she is goin left to right but she is at ways center
+        {
+            girlLocal.z -= 2f * Time.deltaTime;
+        }
         girlSideMovementRoot.localPosition = girlLocal;
     }
 }

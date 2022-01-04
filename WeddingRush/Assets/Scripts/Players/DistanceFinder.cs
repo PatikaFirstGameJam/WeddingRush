@@ -1,5 +1,4 @@
 using System;
-using UnityEditor;
 using UnityEngine;
 
 public class DistanceFinder : MonoBehaviour
@@ -13,8 +12,7 @@ public class DistanceFinder : MonoBehaviour
     private Vector3 distance;
     [SerializeField] private float distanceX;
 
-    public static event Action closeDistance;
-    public static event Action longDistance;
+    public static event Action<float> closeDistance;
 
     void Update()
     {
@@ -32,13 +30,6 @@ public class DistanceFinder : MonoBehaviour
 
     private void DistanceController()
     {
-        if (distanceX >= -1.5 && distanceX <= 1.5)
-        {
-            closeDistance?.Invoke();
-        }
-        else
-        {
-            longDistance?.Invoke();
-        }
+            closeDistance?.Invoke(distanceX);
     }
 }

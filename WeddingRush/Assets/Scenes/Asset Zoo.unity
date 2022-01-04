@@ -1569,13 +1569,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5f836f83607718442ae28700ce2b648a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  boyPlayer: {fileID: 0}
-  girlPlayer: {fileID: 0}
-  boyPosition: {x: 0, y: 0, z: 0}
-  girlPosition: {x: 0, y: 0, z: 0}
-  distance: {x: 0, y: 0, z: 0}
-  distanceX: 0
-  distanceXAtPreGate: 0
 --- !u!1 &1255328774
 GameObject:
   m_ObjectHideFlags: 0

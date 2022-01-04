@@ -53,5 +53,5 @@ public class GateEntrance : MonoBehaviour
 
             GameManager.GirlEnableTrue();
         }
-    }
+    }*/
 }

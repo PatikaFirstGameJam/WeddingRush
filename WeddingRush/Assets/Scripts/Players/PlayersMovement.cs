@@ -134,13 +134,13 @@ public class PlayersMovement : MonoBehaviour
         }
         else if
             (girlLocal.z >= boyLocal.z &&
-             forGirlZ >= distanceX) //forLeftDecrease if she is goin right to left but she is at ways center
+             forGirlZ >= distanceX) //forLeftDecrease if she is goin right to left but if she is at ways center
         {
             girlLocal.z -= 2f * Time.deltaTime;
         }
         else if
             (girlLocal.z >= boyLocal.z &&
-             forGirlZ <= distanceX) //forRightDecrease if she is goin left to right but she is at ways center
+             forGirlZ <= distanceX) //forRightDecrease if she is goin left to right but if she is at ways center
         {
             girlLocal.z -= 2f * Time.deltaTime;
         }

@@ -285,8 +285,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2b769680c64ab954ca5e3e1f36b28d74, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  boyPlayer: {fileID: 1153301421}
-  girlPlayer: {fileID: 1556916011}
+  boyPlayer: {fileID: 1559499759}
+  girlPlayer: {fileID: 1189638488}
   boyPosition: {x: 0, y: 0, z: 0}
   girlPosition: {x: 0, y: 0, z: 0}
   distanceX: 0

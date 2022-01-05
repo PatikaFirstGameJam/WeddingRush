@@ -9,10 +9,9 @@ public class DistanceFinder : MonoBehaviour
     [SerializeField] private Vector3 boyPosition;
     [SerializeField] private Vector3 girlPosition;
 
-    private Vector3 distance;
-    [SerializeField] private float distanceX;
+    private float distance;
 
-    public static event Action<float> closeDistance;
+    public static event Action<float> allDistance;
 
     void Update()
     {
@@ -24,12 +23,11 @@ public class DistanceFinder : MonoBehaviour
     {
         boyPosition = boyPlayer.transform.position;
         girlPosition = girlPlayer.transform.position;
-        distance = boyPosition - girlPosition;
-        distanceX = distance.x;
+        distance = Vector3.Distance(boyPosition, girlPosition);
     }
 
     private void DistanceController()
     {
-        closeDistance?.Invoke(distanceX);
+        allDistance?.Invoke(distance);
     }
 }

@@ -1,4 +1,5 @@
 using System;
+using System.Runtime.CompilerServices;
 using UnityEngine;
 
 public class PlayersMovement : MonoBehaviour
@@ -29,16 +30,17 @@ public class PlayersMovement : MonoBehaviour
     private float girlLeftLimitX => girlLeftLimit.localPosition.x;
     private float girlRightLimitX => girlRightLimit.localPosition.x;
 
-    private float forGirlZ;
+    private const float startGirlForwardDistance = 1.5f;
+    private const float centerForGirl = 1.14f;
 
     private void Awake()
     {
-        DistanceFinder.closeDistance += ChangeGirlZPosition;
+        DistanceFinder.allDistance += ChangeGirlZPosition;
     }
 
     private void OnDestroy()
     {
-        DistanceFinder.closeDistance -= ChangeGirlZPosition;
+        DistanceFinder.allDistance -= ChangeGirlZPosition;
     }
 
     void Update()
@@ -107,40 +109,19 @@ public class PlayersMovement : MonoBehaviour
 
     private void ChangeGirlZPosition(float distanceX)
     {
-        if (distanceX <= 0)
-        {
-            forGirlZ = -1.14f;
-        }
-        else
-        {
-            forGirlZ = 1.14f;
-        }
-
-        var difference = forGirlZ - distanceX;
+        var difference = startGirlForwardDistance - distanceX;
         var girlLocal = girlSideMovementRoot.localPosition;
-        var boyLocal = boySideMovementRoot.localPosition;
-        var forLeftComeIncrease = boyLocal.z + difference;
-        var forRightComeIncrease = boyLocal.z - difference;
+        var boyLocalZ = boySideMovementRoot.localPosition.z;
+        var zForward = boyLocalZ + difference;
 
-        if (girlLocal.z < forGirlZ &&
-            girlLocal.z < forLeftComeIncrease) // if she is at left side and wants to go right first come
-        {
-            girlLocal.z += 2f * Time.deltaTime;
-        }
-        else if (girlLocal.z > forGirlZ &&
-                 girlLocal.z < forRightComeIncrease) // if she is at right side and wants to go left first come
+        if (girlLocal.z < zForward) //if she has closedistance we are increasing her z positioning. 
         {
             girlLocal.z += 2f * Time.deltaTime;
         }
         else if
-            (girlLocal.z >= boyLocal.z &&
-             forGirlZ >= distanceX) //forLeftDecrease if she is goin right to left but if she is at ways center
-        {
-            girlLocal.z -= 2f * Time.deltaTime;
-        }
-        else if
-            (girlLocal.z >= boyLocal.z &&
-             forGirlZ <= distanceX) //forRightDecrease if she is goin left to right but if she is at ways center
+            (girlLocal.z > boyLocalZ &&
+             (centerForGirl >= distanceX ||
+              centerForGirl <= distanceX)) // if she at forward and their distance bigger than girls center position.
         {
             girlLocal.z -= 2f * Time.deltaTime;
         }

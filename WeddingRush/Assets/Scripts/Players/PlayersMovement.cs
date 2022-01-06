@@ -45,9 +45,9 @@ public class PlayersMovement : MonoBehaviour
 
     void Update()
     {
-        ForwardMovement();
         HandleInput();
         SideMovement();
+        ForwardMovement();
     }
 
     private void ForwardMovement()
@@ -92,6 +92,7 @@ public class PlayersMovement : MonoBehaviour
     {
         if (Input.GetMouseButtonDown(0))
         {
+            GameManager.Instance.IsGameStartEnable();
             previousMousePosition = Input.mousePosition;
         }
 

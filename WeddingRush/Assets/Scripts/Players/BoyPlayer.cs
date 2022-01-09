@@ -1,7 +1,9 @@
+using System;
 using UnityEngine;
 
 public class BoyPlayer : MonoBehaviour
 {
+    public static event Action finish;
     private void OnTriggerEnter(Collider col)
     {
         if (col.gameObject.CompareTag("Objective"))
@@ -13,13 +15,21 @@ public class BoyPlayer : MonoBehaviour
         {
             GameManager.Instance.DecreaseRingAmount();
         }
-        else if (col.gameObject.CompareTag("PreGate"))
+        /*else if (col.gameObject.CompareTag("PreGate"))
         {
             GameManager.Instance.GirlEnableFalse();
         }
         else if (col.gameObject.CompareTag("PostGate"))
         {
             GameManager.Instance.GirlEnableTrue();
+        }*/
+    }
+
+    private void OnTriggerExit(Collider other)
+    {
+        if (other.gameObject.CompareTag("Finish"))
+        {
+            finish?.Invoke();
         }
     }
 }

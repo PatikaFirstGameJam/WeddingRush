@@ -64,7 +64,7 @@ public class GameManager : MonoSingleton<GameManager>
 
     private void Update()
     {
-        GirlStatus();
+        //GirlStatus();
         AllMoney();
         if (isGameStart)
         {
@@ -72,7 +72,7 @@ public class GameManager : MonoSingleton<GameManager>
         }
     }
 
-    public void GirlStatus()
+    /*public void GirlStatus()
     {
         if (isGirlEnable)
         {
@@ -82,9 +82,9 @@ public class GameManager : MonoSingleton<GameManager>
         {
             girlPlayer.SetActive(false);
         }
-    }
+    }*/
 
-    public void GirlEnableTrue()
+    /*public void GirlEnableTrue()
     {
         isGirlEnable = true;
     }
@@ -92,7 +92,7 @@ public class GameManager : MonoSingleton<GameManager>
     public void GirlEnableFalse()
     {
         isGirlEnable = false;
-    }
+    }*/
 
     public float GetLoveValue()
     {
@@ -104,4 +104,5 @@ public class GameManager : MonoSingleton<GameManager>
         PlayerPrefs.SetInt("Money",money);
         moneyText.text=PlayerPrefs.GetInt("Money", 0).ToString();
     }
+
 }

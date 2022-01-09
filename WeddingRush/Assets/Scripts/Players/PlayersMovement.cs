@@ -32,22 +32,30 @@ public class PlayersMovement : MonoBehaviour
 
     private const float startGirlForwardDistance = 1.5f;
     private const float centerForGirl = 1.14f;
+    private bool isFinish;
 
     private void Awake()
     {
+        isFinish = false;
         DistanceFinder.allDistance += ChangeGirlZPosition;
+        BoyPlayer.finish += ChangeFinishBool;
     }
 
     private void OnDestroy()
     {
         DistanceFinder.allDistance -= ChangeGirlZPosition;
+        BoyPlayer.finish -= ChangeFinishBool;
     }
 
     void Update()
     {
         HandleInput();
         SideMovement();
-        ForwardMovement();
+        if (!isFinish)
+        {
+            ForwardMovement();
+        }
+        
     }
 
     private void ForwardMovement()
@@ -128,5 +136,12 @@ public class PlayersMovement : MonoBehaviour
         }
 
         girlSideMovementRoot.localPosition = girlLocal;
+    }
+
+    private void ChangeFinishBool()
+    {
+        girlPlayer.SetActive(false);
+        boyPlayer.SetActive(false);
+        isFinish = true;
     }
 }

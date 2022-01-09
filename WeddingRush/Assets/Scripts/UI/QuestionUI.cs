@@ -7,32 +7,31 @@ using TMPro;
 
 public class QuestionUI : MonoBehaviour
 {
+    public static QuestionUI Instance { get; private set; }
+
     private TextMeshProUGUI textMeshPro;
-    private Button YesButton;
-    private Button NoButton;
+    private Button yesBtn;
+    private Button noBtn;
 
     private void Awake()
     {
+        Instance = this;
         textMeshPro = transform.Find("Text").GetComponent<TextMeshProUGUI>();
-        YesButton = transform.Find("YesButton").GetComponent<Button>();
-        NoButton = transform.Find("NoButton").GetComponent<Button>();
+        yesBtn = transform.Find("YesBtn").GetComponent<Button>();
+        noBtn = transform.Find("NoBtn").GetComponent<Button>();
 
-        ShowQuestion("Are you sure?", () => {
-            Debug.Log("Yes");
-        }, () => {
-            Debug.Log("No");
-        });
+        Hide();
     }
-
 
     public void ShowQuestion(string questionText, Action yesAction, Action noAction)
     {
+        gameObject.SetActive(true);
         textMeshPro.text = questionText;
-        YesButton.onClick.AddListener(() => {
+        yesBtn.onClick.AddListener(() => {
             Hide();
             yesAction();
         });
-        NoButton.onClick.AddListener(() => {
+        noBtn.onClick.AddListener(() => {
             Hide();
             noAction();
         });

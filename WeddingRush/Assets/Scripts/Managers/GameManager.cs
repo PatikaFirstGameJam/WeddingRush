@@ -1,4 +1,5 @@
 using System;
+using System.Collections;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -14,12 +15,15 @@ public class GameManager : MonoSingleton<GameManager>
     [SerializeField] private Image tapToPlay;
     [SerializeField] public bool isGameStart;
 
+    public event Action<float> OnProgressChange;
+
 
     private void Awake()
     {
         tapToPlay.enabled=true;
         Time.timeScale = 0f;
         isGameStart = false;
+        StartCoroutine(DecreaseLovePerSecRoutine());
     }
     
     public void IsGameStartEnable()
@@ -41,13 +45,30 @@ public class GameManager : MonoSingleton<GameManager>
     public void IncreaseLove()
     {
         love += 10;
+        float pct = (float)love / 100;
+        Debug.Log(pct);
+        OnProgressChange?.Invoke(pct);
         HeartScale.Instance.ChangeAnimationState();
     }
 
     public void DecreaseLove()
     {
         love -= 20;
+        float pct = (float)love / 100;
+        OnProgressChange?.Invoke(pct);
         HeartScale.Instance.ChangeAnimationState();
+    }
+
+    private IEnumerator DecreaseLovePerSecRoutine()
+    {
+        while (true)
+        {
+            love -= 1;
+            float pct = (float)love / 100;
+            OnProgressChange?.Invoke(pct);
+            yield return new WaitForSeconds(1f);
+        }
+        
     }
     public void DecreaseRingAmount()
     {
@@ -94,7 +115,7 @@ public class GameManager : MonoSingleton<GameManager>
         isGirlEnable = false;
     }*/
 
-    public float GetLoveValue()
+    public int GetLoveValue()
     {
         return love;
     }

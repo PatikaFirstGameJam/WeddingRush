@@ -4,6 +4,8 @@ using UnityEngine;
 public class BoyPlayer : MonoBehaviour
 {
     public static event Action finish;
+    public static event Action door;
+    public static event Action exit;
     private void OnTriggerEnter(Collider col)
     {
         if (col.gameObject.CompareTag("Objective"))
@@ -15,21 +17,19 @@ public class BoyPlayer : MonoBehaviour
         {
             GameManager.Instance.DecreaseRingAmount();
         }
-        /*else if (col.gameObject.CompareTag("PreGate"))
+        else if (col.gameObject.CompareTag("Finish"))
         {
-            GameManager.Instance.GirlEnableFalse();
+            door?.Invoke();
         }
-        else if (col.gameObject.CompareTag("PostGate"))
-        {
-            GameManager.Instance.GirlEnableTrue();
-        }*/
     }
+
 
     private void OnTriggerExit(Collider other)
     {
         if (other.gameObject.CompareTag("Finish"))
         {
             finish?.Invoke();
+            exit?.Invoke();
         }
     }
 }

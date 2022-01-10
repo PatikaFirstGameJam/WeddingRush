@@ -5,12 +5,10 @@ using UnityEngine.UI;
 
 public class GameManager : MonoSingleton<GameManager>
 {
-    [SerializeField] private int money = 0;
+    [SerializeField] private int money;
     [SerializeField] private int love = 50;
-    [SerializeField] private GameObject girlPlayer;
-    [SerializeField] private bool isGirlEnable = true;
 
-    [SerializeField] private Text moneyText;
+    
 
     [SerializeField] private Image tapToPlay;
     [SerializeField] public bool isGameStart;
@@ -23,7 +21,7 @@ public class GameManager : MonoSingleton<GameManager>
         tapToPlay.enabled=true;
         Time.timeScale = 0f;
         isGameStart = false;
-        StartCoroutine(DecreaseLovePerSecRoutine());
+        money = PlayerPrefs.GetInt("Money", 0);
     }
     
     public void IsGameStartEnable()
@@ -40,6 +38,7 @@ public class GameManager : MonoSingleton<GameManager>
     public void IncreaseMoney()
     {
         money += 200;
+        PlayerPrefs.SetInt("Money",money);
     }
 
     public void IncreaseLove()
@@ -70,12 +69,27 @@ public class GameManager : MonoSingleton<GameManager>
         }
         
     }
+
+    public void DecreaseFurnitureAmount()
+    {
+        if (money >= 200)
+        {
+            IncreaseLove();
+            money -= 200;
+            PlayerPrefs.SetInt("Money",money);
+        }
+        else
+        {
+            DecreaseLove();
+        }
+    }
     public void DecreaseRingAmount()
     {
         if (money >= 500)
         {
             IncreaseLove();
             money -= 500;
+            PlayerPrefs.SetInt("Money",money);
         }
         else
         {
@@ -85,45 +99,20 @@ public class GameManager : MonoSingleton<GameManager>
 
     private void Update()
     {
-        //GirlStatus();
-        AllMoney();
         if (isGameStart)
         {
             StartGame();
         }
     }
 
-    /*public void GirlStatus()
-    {
-        if (isGirlEnable)
-        {
-            girlPlayer.SetActive(true);
-        }
-        else
-        {
-            girlPlayer.SetActive(false);
-        }
-    }*/
-
-    /*public void GirlEnableTrue()
-    {
-        isGirlEnable = true;
-    }
-
-    public void GirlEnableFalse()
-    {
-        isGirlEnable = false;
-    }*/
-
     public int GetLoveValue()
     {
         return love;
     }
 
-    private void AllMoney()
+    public int GetMoney()
     {
-        PlayerPrefs.SetInt("Money",money);
-        moneyText.text=PlayerPrefs.GetInt("Money", 0).ToString();
+        return PlayerPrefs.GetInt("Money", 0);
     }
 
 }

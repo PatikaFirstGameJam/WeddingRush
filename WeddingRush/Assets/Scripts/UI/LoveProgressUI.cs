@@ -42,6 +42,7 @@ public class LoveProgressUI : MonoBehaviour
         }
 
         loveFillImage.fillAmount = pct;
+        
     }
 
     private void Update()

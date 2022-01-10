@@ -1,17 +1,12 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.Events;
 
 public class ObjectClicker : MonoBehaviour
 {
-    public GameObject definedButton;
     public GameObject[] levels;
     private int current_level = 0;
 
     private void Start()
     {
-        definedButton = this.gameObject;
         SwitchObject(current_level);
     }
 
@@ -24,10 +19,15 @@ public class ObjectClicker : MonoBehaviour
 
             if (Physics.Raycast(ray, out hit, 100.0f) && hit.collider.gameObject == gameObject)
             {
-                    if (current_level < levels.Length - 1)
+                    if (current_level < levels.Length - 1 && GameManager.Instance.GetMoney()>=200)
                     {
                         current_level++;
                         SwitchObject(current_level);
+                        GameManager.Instance.DecreaseFurnitureAmount();
+                    }
+                    else if (GameManager.Instance.GetMoney()<200)
+                    {
+                        GameManager.Instance.DecreaseLove();
                     }
             }
         }

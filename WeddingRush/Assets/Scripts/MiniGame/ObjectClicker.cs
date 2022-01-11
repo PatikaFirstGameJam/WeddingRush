@@ -19,7 +19,7 @@ public class ObjectClicker : MonoBehaviour
 
             if (Physics.Raycast(ray, out hit, 100.0f) && hit.collider.gameObject == gameObject)
             {
-                    if (current_level < levels.Length - 1 && GameManager.Instance.GetMoney()>=200)
+                    if (current_level < levels.Length - 1 && GameManager.Instance.GetMoney()>=100)
                     {
                         current_level++;
                         SwitchObject(current_level);

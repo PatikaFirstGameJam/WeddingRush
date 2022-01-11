@@ -19,6 +19,8 @@ public class GameManager : MonoSingleton<GameManager>
     public static event Action failed;
     public static event Action nextLevel;
 
+    private int coefficient=1;
+
 
     private void Awake()
     {
@@ -42,7 +44,7 @@ public class GameManager : MonoSingleton<GameManager>
     
     public void IncreaseMoney()
     {
-        money += 200;
+        money += 5*coefficient;
         PlayerPrefs.SetInt("Money",money);
     }
 
@@ -50,7 +52,7 @@ public class GameManager : MonoSingleton<GameManager>
     {
         if (love<=100)
         {
-            love += 5;
+            love += 10;
             float pct = (float)love / 100;
             Debug.Log(pct);
             OnProgressChange?.Invoke(pct);
@@ -61,14 +63,13 @@ public class GameManager : MonoSingleton<GameManager>
 
     public void DecreaseLove()
     {
-        if (love>=0)
+        if (love>0)
         {
             love -= 10;
             float pct = (float)love / 100;
             OnProgressChange?.Invoke(pct);
-            HeartScale.Instance.ChangeAnimationState();
         }
-        
+        HeartScale.Instance.ChangeAnimationState();
     }
 
     private IEnumerator DecreaseLovePerSecRoutine()
@@ -85,10 +86,10 @@ public class GameManager : MonoSingleton<GameManager>
 
     public void DecreaseFurnitureAmount()
     {
-        if (money >= 200)
+        if (money >= 100)
         {
             IncreaseLove();
-            money -= 200;
+            money -= 100;
             PlayerPrefs.SetInt("Money",money);
         }
         else
@@ -98,10 +99,10 @@ public class GameManager : MonoSingleton<GameManager>
     }
     public void DecreaseRingAmount()
     {
-        if (money >= 500)
+        if (money >= 50)
         {
             IncreaseLove();
-            money -= 500;
+            money -= 50;
             PlayerPrefs.SetInt("Money",money);
         }
         else
@@ -116,6 +117,8 @@ public class GameManager : MonoSingleton<GameManager>
         {
             StartGame();
         }
+
+        coefficientChanger();
     }
 
     public int GetLoveValue()
@@ -134,14 +137,14 @@ public class GameManager : MonoSingleton<GameManager>
         {
             failed?.Invoke();
         }
-        else if (!isFailed && PlayerPrefs.GetInt("Money", 0)<200)
+        else if (!isFailed && PlayerPrefs.GetInt("Money", 0)<100)
         {
             nextLevel?.Invoke();
         }
     }
     public void FinishController()
     {
-        if (PlayerPrefs.GetInt("Money", 0)<200)
+        if (PlayerPrefs.GetInt("Money", 0)<100)
         {
             isFailed = true;
             Finish();
@@ -150,6 +153,30 @@ public class GameManager : MonoSingleton<GameManager>
         {
             isFailed = false;
             Finish();
+        }
+    }
+
+    public void coefficientChanger()
+    {
+        if (love>0 && love<=10)
+        {
+            coefficient = 1;
+        }
+        else if (love >10 && love<=30)
+        {
+            coefficient = 2;
+        }
+        else if (love >30 && love<=50)
+        {
+            coefficient = 3;
+        }
+        else if (love >50 && love<=80)
+        {
+            coefficient = 4;
+        }
+        else if (love >80 && love<=1000)
+        {
+            coefficient = 5;
         }
     }
 

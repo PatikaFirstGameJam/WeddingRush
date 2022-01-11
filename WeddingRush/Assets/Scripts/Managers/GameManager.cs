@@ -6,7 +6,7 @@ using UnityEngine.UI;
 public class GameManager : MonoSingleton<GameManager>
 {
     [SerializeField] private int money;
-    [SerializeField] private int love = 50;
+    [SerializeField] private int love = 0;
 
     
 
@@ -22,6 +22,7 @@ public class GameManager : MonoSingleton<GameManager>
         Time.timeScale = 0f;
         isGameStart = false;
         money = PlayerPrefs.GetInt("Money", 0);
+        BoyPlayer.finish += Finish;
     }
     
     public void IsGameStartEnable()
@@ -43,19 +44,27 @@ public class GameManager : MonoSingleton<GameManager>
 
     public void IncreaseLove()
     {
-        love += 10;
-        float pct = (float)love / 100;
-        Debug.Log(pct);
-        OnProgressChange?.Invoke(pct);
+        if (love<=100)
+        {
+            love += 5;
+            float pct = (float)love / 100;
+            Debug.Log(pct);
+            OnProgressChange?.Invoke(pct);
+        }
         HeartScale.Instance.ChangeAnimationState();
+        
     }
 
     public void DecreaseLove()
     {
-        love -= 20;
-        float pct = (float)love / 100;
-        OnProgressChange?.Invoke(pct);
-        HeartScale.Instance.ChangeAnimationState();
+        if (love>=0)
+        {
+            love -= 10;
+            float pct = (float)love / 100;
+            OnProgressChange?.Invoke(pct);
+            HeartScale.Instance.ChangeAnimationState();
+        }
+        
     }
 
     private IEnumerator DecreaseLovePerSecRoutine()
@@ -113,6 +122,14 @@ public class GameManager : MonoSingleton<GameManager>
     public int GetMoney()
     {
         return PlayerPrefs.GetInt("Money", 0);
+    }
+
+    public void Finish()
+    {
+        if (money<200)
+        {
+            Debug.Log("Failed");
+        }
     }
 
 }

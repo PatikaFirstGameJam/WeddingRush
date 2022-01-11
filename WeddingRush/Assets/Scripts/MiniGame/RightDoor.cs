@@ -2,12 +2,12 @@ using System;
 using System.Collections;
 using UnityEngine;
 
-public class Door : MonoBehaviour
+public class RightDoor : MonoBehaviour
 {
     private void Awake()
     {
         BoyPlayer.door += OpenTheDoor;
-        BoyPlayer.exit += DestroyDoor;
+        //BoyPlayer.exit += DestroyDoor;
     }
 
     private void OpenTheDoor()
@@ -23,11 +23,11 @@ public class Door : MonoBehaviour
     {
         
         float elapsed = 0.015f;
-        while (transform.rotation.y > -45 )
+        while (transform.rotation.y < +45 )
         {
             var currentRotation = gameObject.transform.rotation;
             var changedRotation = currentRotation;
-            changedRotation.y -= 0.3f;
+            changedRotation.y += 0.3f;
             currentRotation.y = Mathf.Lerp(currentRotation.y, changedRotation.y, elapsed);
             transform.rotation = currentRotation;
             yield return null;

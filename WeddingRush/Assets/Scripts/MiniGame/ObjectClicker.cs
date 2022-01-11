@@ -27,7 +27,7 @@ public class ObjectClicker : MonoBehaviour
                     }
                     else if (GameManager.Instance.GetMoney()<200)
                     {
-                        GameManager.Instance.DecreaseLove();
+                        Debug.Log("Next Level");
                     }
             }
         }

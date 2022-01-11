@@ -9,7 +9,7 @@ public class CameraHandler : MonoBehaviour
     private void Awake()
     {
         BoyPlayer.door += Cam1Disabled;
-        BoyPlayer.exit += Cam2Disabled;
+        BoyPlayer.finish += Cam2Disabled;
     }
 
     private void Cam1Disabled()

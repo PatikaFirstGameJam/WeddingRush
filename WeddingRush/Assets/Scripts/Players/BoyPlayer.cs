@@ -5,7 +5,7 @@ public class BoyPlayer : MonoBehaviour
 {
     public static event Action finish;
     public static event Action door;
-    public static event Action exit;
+   // public static event Action exit;
     private void OnTriggerEnter(Collider col)
     {
         if (col.gameObject.CompareTag("Objective"))
@@ -29,7 +29,7 @@ public class BoyPlayer : MonoBehaviour
         if (other.gameObject.CompareTag("Finish"))
         {
             finish?.Invoke();
-            exit?.Invoke();
+            //exit?.Invoke();
         }
     }
 }

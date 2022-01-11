@@ -13,7 +13,11 @@ public class GameManager : MonoSingleton<GameManager>
     [SerializeField] private Image tapToPlay;
     [SerializeField] public bool isGameStart;
 
+    public bool isFailed=false;
+
     public event Action<float> OnProgressChange;
+    public static event Action failed;
+    public static event Action nextLevel;
 
 
     private void Awake()
@@ -22,7 +26,7 @@ public class GameManager : MonoSingleton<GameManager>
         Time.timeScale = 0f;
         isGameStart = false;
         money = PlayerPrefs.GetInt("Money", 0);
-        BoyPlayer.finish += Finish;
+        BoyPlayer.finish += FinishController;
     }
     
     public void IsGameStartEnable()
@@ -126,9 +130,26 @@ public class GameManager : MonoSingleton<GameManager>
 
     public void Finish()
     {
-        if (money<200)
+        if (isFailed)
         {
-            Debug.Log("Failed");
+            failed?.Invoke();
+        }
+        else if (!isFailed && PlayerPrefs.GetInt("Money", 0)<200)
+        {
+            nextLevel?.Invoke();
+        }
+    }
+    public void FinishController()
+    {
+        if (PlayerPrefs.GetInt("Money", 0)<200)
+        {
+            isFailed = true;
+            Finish();
+        }
+        else
+        {
+            isFailed = false;
+            Finish();
         }
     }
 

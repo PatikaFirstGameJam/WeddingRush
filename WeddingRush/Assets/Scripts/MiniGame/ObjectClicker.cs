@@ -24,10 +24,7 @@ public class ObjectClicker : MonoBehaviour
                         current_level++;
                         SwitchObject(current_level);
                         GameManager.Instance.DecreaseFurnitureAmount();
-                    }
-                    else if (GameManager.Instance.GetMoney()<200)
-                    {
-                        Debug.Log("Next Level");
+                        GameManager.Instance.Finish();
                     }
             }
         }
